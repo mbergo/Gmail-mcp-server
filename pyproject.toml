@@ -10,3 +10,16 @@ dependencies = [
     "google-auth-oauthlib>=1.2.1",
     "mcp[cli]>=1.2.1",
 ]
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv"]
+skips = ["B101"]
+targets = ["."]
+
+[tool.bandit.assert_used]
+skips = ["*_test.py", "test_*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=. --cov-report=term-missing"
